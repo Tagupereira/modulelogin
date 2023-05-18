@@ -1,0 +1,17 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+
+
+main{
+    display: flex;
+    width:100%;
+    flex-direction: column;
+    padding:20px;
+    align-items: center;
+}
