@@ -11,9 +11,10 @@ class Login{
 
     static config = {
         cor:"048",
-        img:"../logos/logo-site.png"
+        img:"../logos/logo-site.png",
+        endpoint: null, //"https://login.deluxdelux1.repl.co/"
     };
-    static endpoint="https://login.deluxdelux1.repl.co/";
+    
 
     static login=(callback_ok,callback_not,config=null)=>{
        
@@ -140,24 +141,26 @@ class Login{
     static verificaLogin = ()=>{
         const mat = document.querySelector("#f_username").value;
         const pas = document.querySelector("#f_senha").value;     
-        const endpoint = this.endpoint+=`?matricula=${mat}&senha=${pas}`;
+        
+        const endpoint = `${this.config.endpoint}/?matricula=${mat}&senha=${pas}`;
         fetch(endpoint)
         .then(res=>res.json())
         .then(res=>{
-            console.log(res);
-    
+                
             if(res){
-                this.logado=true;
-                this.matlogado=mat;
-                this.nomelogado=res.nome;
-                this.acessologado=res.acesso;
+                console.log("res");
+                sessionStorage.setItem("logado","true");
+                sessionStorage.setItem("matlogado",mat);
+                sessionStorage.setItem("nomelogado",res.nome);
+                sessionStorage.setItem("acessologado",res.acesso);
                 this.callback_ok();
                 this.fechar();               
             }else{
-                this.logado=false;
-                this.matlogado=null;
-                this.nomelogado=null;
-                this.acessologado=null;
+                sessionStorage.setItem("logado","false");
+                sessionStorage.setItem("matlogado","");
+                sessionStorage.setItem("nomelogado","");
+                sessionStorage.setItem("acessologado","");
+                console.log("not");
                 this.callback_not();
             };
         });

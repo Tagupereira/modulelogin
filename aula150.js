@@ -1,4 +1,4 @@
-// //AULA 141 - 149 login
+// //AULA 150 - 151 login
 
 const callback_ok = ()=>{
     Swal.fire({
@@ -25,4 +25,10 @@ const callback_not = () =>{
       })
 };
 
-Login.login(callback_ok,callback_not);
+const configLogin = {
+  cor: "048" ,
+  img: "../logos/logo.png",
+  endpoint: "https://login.deluxdelux1.repl.co"
+}
+
+Login.login(callback_ok,callback_not, configLogin);
